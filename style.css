@@ -1,0 +1,44 @@
+  
+body{
+    background-color: #000;
+    text-align: center;
+    color:white;
+    font-family: Arial;
+  }
+
+/*
+
+Button CSS was used from the following website
+https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_animate3
+
+*/
+
+  .button {
+  display: inline-block;
+  padding: 15px 25px;
+  margin-bottom: 30px;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #11AF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #118e41}
+
+.button:active {
+  background-color: #118e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+h1 {
+  font-size: 60px;
+  
+}
+
+
