@@ -30,6 +30,11 @@ Alternatively, making the '255' smaller will make the channer of the RGB darker:
 // This will make the Blue Channel of the final color darker
 g.j = mapValue(g.j, minJ, maxJ, 0, 100);
 ```
+3. Finally, you can adjust the size of the squares that make up the graph. By changing the following line, the squares will change to reflect a square of the pixel size of the new number:
+```bash
+let size = 5;
+```
+For example, making 'size' equal to 1 will make each graph composition square the size of 1 pixel.
 
 ## Interesting Findings
 * Squeezing the neural network through a single node produces a linear gradient. As values pass in through a neural net with layers such as [2, 1 ,3], this will produce a linear gradient with a random angle.
