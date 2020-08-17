@@ -20,8 +20,13 @@ g.j = mapValue(g.j, minJ, maxJ, 0, 255);
 ```
 By adjusting the final part of each of those lines (i.e. ..., 0, 255);), this will adjust the ammount of any given color you would like to see (h -> Red, i -> Green, j -> Blue). Making the '0' larger will make that channel of the RGB lighter:
 ```bash
-// This will make the Red Channel of the final color lighter (less visible)
+// This will make the Red Channel of the final color lighter
 g.h = mapValue(g.h, minH, maxH, 100, 255);
+```
+Alternatively, making the '255' smaller will make the channer of the RGB darker:
+```bash
+// This will make the Blue Channel of the final color darker
+g.j = mapValue(g.j, minJ, maxJ, 0, 100);
 ```
 
 ## Interesting Findings
