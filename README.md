@@ -1,7 +1,7 @@
 # Gradient-Generator
 This visual algorithm shows how a neural network is able to produce smooth gradients using simple 'Push Forward' mechanics. The 'Push Forward' part of the neural network means that no back propagation is used. The network is initialized with random weight values and passed each pixels (x, y) location as input and produces a 3D vector, each component for a red, green, and blue component to form a color.
 
-![Sample Graph](https://github.com/hubertben/Gradient-Generator/sample_graph.png)
+![Sample Graph](https://github.com/hubertben/Gradient-Generator/sample_graph.PNG)
 
 ## How to Adjust the Graph
 
