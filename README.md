@@ -7,14 +7,14 @@ This visual algorithm shows how a neural network is able to produce smooth gradi
 
 1. One big aspect of the graph you may want to adjust is how many, and the size of the layers in between the input and output. The way to adjust the layer sizes within the code is by adjusting the line:
 ```bash
-const layer_sizes = [2, 6, 3]
+const layer_sizes = [2, 6, 3];
 ```
    The first and last numbers in the list are the layer sizes for the input and output (respectively). **THESE VALUES CANNOT BE ADJUSTED IN ORDER FOR THE PROGRAM TO WORK**. To add    layers into the model, just add more values into the list (values greater than 0):
 ```bash
-const layer_sizes = [2, 16, 8, 4, 3]
+const layer_sizes = [2, 16, 8, 4, 3];
 ```
 
-2. You can also adjust the ammount of each color you see in the graph. Taking a look at the following line of code inside the update function:
+2. You can also adjust the amount of each color you see in the graph. Taking a look at the following line of code inside the update function:
 ```bash
 g.h = mapValue(g.h, minH, maxH, 0, 255);
 g.i = mapValue(g.i, minI, maxI, 0, 255);
