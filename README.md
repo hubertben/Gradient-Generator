@@ -1,5 +1,5 @@
 # Gradient-Generator
-This visual algorithm shows how a neural network is able to produce smooth gradients using simple 'Push Forward' mechanics. The 'Push Forward' part of the neural network means that no back propagation is used. The network is initialized with random weight values and passed each pixels (x, y) location as input and produces a 3D vector, each component for a red, green, and blue component to form a color.
+This visual algorithm shows how a neural network is able to produce smooth gradients using simple 'Push Forward' mechanics. The 'Push Forward' part of the neural network means that no backpropagation is used. The network is initialized with random weight values and passed each pixel (x, y) location as input and produces a 3D vector, each component for a red, green, and blue component to form a color.
 
 ![Sample Graph](https://github.com/hubertben/Gradient-Generator/blob/master/sample_graph.PNG)
 
@@ -23,9 +23,9 @@ let size = 5;
 For example, making 'size' equal to 1 will make each graph composition square the size of 1 pixel.
 
 ## Interesting Findings
-* Squeezing the neural network through a single node produces a linear gradient. As values pass in through a neural net with layers such as [2, 1 ,3], this will produce a linear gradient with a random angle.
-  - Playing around with the layer sizes showed that not only willl the 2nd layer's size determine how the graph ends up curving, but also the more layers that are added in between the input and output will produce more strange results, but ill let you play around with that.
+* Squeezing the neural network through a single node produces a linear gradient. As values pass in through a neural net with layers such as [2, 1, 3], this will produce a linear gradient with a random angle.
+  - Playing around with the layer sizes showed that not only will the 2nd layer's size determine how the graph ends up curving, but also the more layers that are added in between the input and output will produce more strange results, but ill let you play around with that.
   
  ## To Be Implemented
- - [x] Currently working on implementing sliders for each of the color varients in order to produce a more desired graph.
-
+ - [x] Currently working on implementing sliders for each of the color variants in order to produce a more desired graph.
+ - [ ] Implementing animation by adding a 3rd dimension to the neural network's input.
