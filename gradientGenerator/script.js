@@ -11,14 +11,17 @@ let blue_v = 255;
 
 red_s.oninput = function () {
     red_v = red_s.value;
+    red_s.style.background = rgbToHex(red_s.value, 0, 0);
 }
 
 green_s.oninput = function () {
     green_v = green_s.value;
+    green_s.style.background = rgbToHex(0, green_s.value, 0);
 }
 
 blue_s.oninput = function () {
     blue_v = blue_s.value;
+    blue_s.style.background = rgbToHex(0, 0, blue_s.value);
 }
 
 let width = c.width;
