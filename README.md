@@ -3,7 +3,7 @@ This visual algorithm shows how a neural network is able to produce smooth gradi
 
 ![Sample Graph](https://github.com/hubertben/Gradient-Generator/blob/master/sample_graph.PNG)
 
-## How to Adjust the Graph
+## Adjusting the Graph
 
 1. One big aspect of the graph you may want to adjust is how many, and the size of the layers in between the input and output. The way to adjust the layer sizes within the code is by adjusting the line:
 ```bash
