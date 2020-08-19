@@ -27,5 +27,5 @@ For example, making 'size' equal to 1 will make each graph composition square th
   - Playing around with the layer sizes showed that not only willl the 2nd layer's size determine how the graph ends up curving, but also the more layers that are added in between the input and output will produce more strange results, but ill let you play around with that.
   
  ## To Be Implemented
- 1. Currently working on implementing sliders for each of the color varients in order to produce a more desired graph.
+ - [x] Currently working on implementing sliders for each of the color varients in order to produce a more desired graph.
 
