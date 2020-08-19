@@ -20,16 +20,23 @@ g.h = mapValue(g.h, minH, maxH, 0, 255);
 g.i = mapValue(g.i, minI, maxI, 0, 255);
 g.j = mapValue(g.j, minJ, maxJ, 0, 255);
 ```
-By adjusting the final part of each of those lines (i.e. ..., 0, 255);), this will adjust the ammount of any given color you would like to see (h -> Red, i -> Green, j -> Blue). Making the '0' larger will make that channel of the RGB lighter:
+By adjusting the final part of each of those lines (i.e. ..., 0, 255);), this will adjust the ammount of any given color you would like to see (h -> Red, i -> Green, j -> Blue). Making the '0' larger will make that channel of the RGB stronger:
 ```bash
-// This will make the Red Channel of the final color lighter
+// This will make the Red Channel of the final color stronger
 g.h = mapValue(g.h, minH, maxH, 100, 255);
 ```
-Alternatively, making the '255' smaller will make the channer of the RGB darker:
+Alternatively, making the '255' smaller will make the channer of the RGB dimmer:
 ```bash
-// This will make the Blue Channel of the final color darker
+// This will make the Blue Channel of the final color dimmer
 g.j = mapValue(g.j, minJ, maxJ, 0, 100);
 ```
+Finally, setting a value to be:
+```bash
+g.i = mapValue(g.i, minI, maxI, 0, 0);
+```
+...will make the color not appear in the final graph, allowing users full control over the color scheme of the graph.
+
+
 3. Finally, you can adjust the size of the squares that make up the graph. By changing the following line, the squares will change to reflect a square of the pixel size of the new number:
 ```bash
 let size = 5;
@@ -39,4 +46,7 @@ For example, making 'size' equal to 1 will make each graph composition square th
 ## Interesting Findings
 * Squeezing the neural network through a single node produces a linear gradient. As values pass in through a neural net with layers such as [2, 1 ,3], this will produce a linear gradient with a random angle.
   - Playing around with the layer sizes showed that not only willl the 2nd layer's size determine how the graph ends up curving, but also the more layers that are added in between the input and output will produce more strange results, but ill let you play around with that.
+  
+ ## To Be Implemented
+ 1. Currently working on implementing sliders for each of the color varients in order to produce a more desired graph.
 
