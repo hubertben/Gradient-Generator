@@ -14,28 +14,7 @@ const layer_sizes = [2, 6, 3];
 const layer_sizes = [2, 16, 8, 4, 3];
 ```
 
-2. You can also adjust the amount of each color you see in the graph. Taking a look at the following line of code inside the update function:
-```bash
-g.h = mapValue(g.h, minH, maxH, 0, 255);
-g.i = mapValue(g.i, minI, maxI, 0, 255);
-g.j = mapValue(g.j, minJ, maxJ, 0, 255);
-```
-By adjusting the final part of each of those lines (i.e. ..., 0, 255);), this will adjust the ammount of any given color you would like to see (h -> Red, i -> Green, j -> Blue). Making the '0' larger will make that channel of the RGB stronger:
-```bash
-// This will make the Red Channel of the final color stronger
-g.h = mapValue(g.h, minH, maxH, 100, 255);
-```
-Alternatively, making the '255' smaller will make the channer of the RGB dimmer:
-```bash
-// This will make the Blue Channel of the final color dimmer
-g.j = mapValue(g.j, minJ, maxJ, 0, 100);
-```
-Finally, setting a value to be:
-```bash
-g.i = mapValue(g.i, minI, maxI, 0, 0);
-```
-...will make the color not appear in the final graph, allowing users full control over the color scheme of the graph.
-
+2. You can also adjust the amount of each color you see in the graph by adjusting the sliders under the canvas. The more left the slider thumb is, the dimmer the color will appear in the final graph. 
 
 3. Finally, you can adjust the size of the squares that make up the graph. By changing the following line, the squares will change to reflect a square of the pixel size of the new number:
 ```bash
