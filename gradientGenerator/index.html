@@ -6,17 +6,37 @@
   <meta name="viewport" content="width=device-width">
   <title>Gradient Generator</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body onload="setup()">
 
-  <h1>Gradient Generator using a Neural Network</h1>
+  <h1 id="header">Gradient Generator using a Neural Network</h1>
+  <p id="credits">Designed and Built by Ben Hubert, 2020</p>
+  <br>
 
   <button type="button" class='button' onclick="run()">Generate</button>
 
+  <br>
+  <br>
 
   <div id="cv">
     <canvas id="myCanvas" width="750" height="800" style="border:2px solid"></canvas>
+  </div>
+
+  <br>
+  <div id="sliders">
+    <label class="label" id="red_label"> Red </label>
+    <br>
+    <input class="slider" id="red_slider" min="0" max="255" value="255" type="range">
+
+    <label class="label" id="green_label"> Green </label>
+    <br>
+    <input class="slider" id="green_slider" min="0" max="255" value="255" type="range">
+
+    <label class="label" id="blue_label"> Blue </label>
+    <br>
+    <input class="slider" id="blue_slider" min="0" max="255" value="255" type="range">
   </div>
 
   <h2>What is going on?</h2>
@@ -28,9 +48,6 @@
   </p>
 
   <script src="script.js"></script>
-  
-  
-
 
 </body>
 
