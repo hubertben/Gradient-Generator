@@ -32,9 +32,6 @@ h1{
   height: 25px;
   background: #d3d3d3;
   outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
 }
 
 .slider:hover {
@@ -58,13 +55,13 @@ h1{
 }
 
 #red_slider{
-  background: rgb(224, 24, 24);
+  background: rgb(255, 0, 0);
 }
 
 #green_slider{
-  background: rgb(24, 224, 24);
+  background: rgb(0, 255, 0);
 }
 
 #blue_slider{
-  background: rgb(24, 144, 224);
+  background: rgb(0, 0, 255);
 }
