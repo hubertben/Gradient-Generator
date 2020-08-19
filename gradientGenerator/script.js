@@ -1,6 +1,26 @@
 let c = document.getElementById("myCanvas");
 let ctx = c.getContext("2d");
 
+let red_s = document.getElementById("red_slider");
+let green_s = document.getElementById("green_slider");
+let blue_s = document.getElementById("blue_slider");
+
+let red_v = 255;
+let green_v = 255;
+let blue_v = 255;
+
+red_s.oninput = function () {
+    red_v = red_s.value;
+}
+
+green_s.oninput = function () {
+    green_v = green_s.value;
+}
+
+blue_s.oninput = function () {
+    blue_v = blue_s.value;
+}
+
 let width = c.width;
 let height = c.height;
 
@@ -12,44 +32,76 @@ let mousey;
 let x = 750;
 let y = 750;
 
-const layer_sizes = [2, 6, 3]
+const layer_sizes = [2, 2, 3, 3]
 let input_values;
 let n;
 let group = []
 
 
-function mapValue(val, low, high, range_low, range_high){
+function mapValue(val, low, high, range_low, range_high) {
     let inc = (range_high - range_low) / (high - low)
     return range_low + ((val - low) * inc)
 }
 
-function setup(){
-  ctx.canvas.width  = window.innerWidth - 100;
-  width = c.width
+function setup() {
+    ctx.canvas.width = window.innerWidth - 100;
+    width = c.width
 }
 
-function run(){
+function run() {
     group = [];
     n = new Net(layer_sizes);
     update();
     draw();
+    updateHeaderColor();
 }
 
 
-function update(){
+function updateHeaderColor() {
+    let header = document.getElementById("header");
+    let credits = document.getElementById("credits");
 
-    for(let x = 1; x < width-1; x+=size){
-        for(let y = 1; y < height-1; y+=size){
-        
+    let txt1 = header.textContent;
+    let newText1 = "";
+    let txt2 = credits.textContent;
+    let newText2 = "";
+
+    for (let i = 0; i < txt1.length; i++) {
+        newText1 += txt1.charAt(i).fontcolor(getPixel(i));
+    }
+    for (let i = 0; i < txt2.length; i++) {
+        newText2 += txt2.charAt(i).fontcolor(getPixel(i));
+    }
+
+    header.innerHTML = newText1;
+    credits.innerHTML = newText2;
+}
+
+function getPixel(i) {
+    let data = ctx.getImageData(i * (width / 45) + 2, 1, 3, 3).data;
+    console.log(data[0], data[1], data[2]);
+    return rgbToHex(data[0], data[1], data[2]);
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+
+function update() {
+
+    for (let x = 1; x < width - 1; x += size) {
+        for (let y = 1; y < height - 1; y += size) {
+
             dx = mapValue(x, 0, width, 0, 1);
             dy = mapValue(y, 0, height, 0, 1)
 
-            input_values = [dx/100, dy/100]
+            input_values = [dx / 100, dy / 100]
 
             n.pushForward(input_values)
 
             group.push(new Particle(x, y, n.outputs()[0], n.outputs()[1], n.outputs()[2]))
-       }   
+        }
     }
 
     let minH = Infinity;
@@ -60,50 +112,50 @@ function update(){
     let maxJ = -Infinity;
 
 
-    for(let g of group){
-        if(g.h < minH){
+    for (let g of group) {
+        if (g.h < minH) {
             minH = g.h;
         }
-        if(g.h > maxH){
+        if (g.h > maxH) {
             maxH = g.h;
         }
 
-        if(g.i < minI){
+        if (g.i < minI) {
             minI = g.i;
         }
-        if(g.i > maxI){
+        if (g.i > maxI) {
             maxI = g.i;
         }
 
-        if(g.j < minJ){
+        if (g.j < minJ) {
             minJ = g.j;
         }
-        if(g.j > maxJ){
+        if (g.j > maxJ) {
             maxJ = g.j;
         }
     }
 
-    
-    for(let g of group){
-        g.h = mapValue(g.h, minH, maxH, 0, 255);
-        g.i = mapValue(g.i, minI, maxI, 0, 255);
-        g.j = mapValue(g.j, minJ, maxJ, 0, 255);
+
+    for (let g of group) {
+        g.h = mapValue(g.h, minH, maxH, 0, red_v);
+        g.i = mapValue(g.i, minI, maxI, 0, green_v);
+        g.j = mapValue(g.j, minJ, maxJ, 0, blue_v);
     }
 
 }
 
 
-function draw(){
+function draw() {
     ctx.clearRect(0, 0, width, height);
-    for(let g of group){
+    for (let g of group) {
         g.draw();
-    }  
+    }
 }
 
 
-class Particle{
+class Particle {
 
-    constructor(x, y, h, i, j){
+    constructor(x, y, h, i, j) {
         this.x = x;
         this.y = y;
         this.h = h;
@@ -111,9 +163,9 @@ class Particle{
         this.j = j;
     }
 
-    draw(){
+    draw() {
         ctx.beginPath();
-        ctx.fillStyle = 'rgb('+ this.h+ ', '+ this.i+ ', '+ this.j+ ')';
+        ctx.fillStyle = 'rgb(' + this.h + ', ' + this.i + ', ' + this.j + ')';
         ctx.rect(this.x, this.y, size, size);
         ctx.fill();
     }
@@ -191,7 +243,7 @@ class WLayer {
     }
     printLayers() {
         console.log('\nWeight Layer');
-            for (let w of this.weights) {
+        for (let w of this.weights) {
             console.log(w.value);
         }
         console.log();
@@ -210,7 +262,7 @@ class Net {
         this.createWeightLayers()
     }
 
-    
+
     createWeightLayers() {
         this.weighted_layers = [];
         for (let l = 0; l < this.layers.length - 1; l++) {
@@ -235,7 +287,7 @@ class Net {
                 wN.passForwardValue();
             }
 
-            for(let n of this.layers[count].nodes){
+            for (let n of this.layers[count].nodes) {
                 n = this.sig(n);
             }
             count++;
@@ -249,11 +301,11 @@ class Net {
         for (let n of this.layers[this.layers.length - 1].nodes) {
             return_arr.push(n.value)
         }
-        
+
         return return_arr
     }
 
-    resetLayers(){
+    resetLayers() {
 
         for (let l of this.layers) {
             for (let n of l.nodes) {
@@ -264,9 +316,7 @@ class Net {
     }
 
     merge(partner) {
-
         resetLayers();
-
         for (let wL = 0; wL < this.weighted_layers.length; wL++) {
             for (let sW = 0; sW < this.weighted_layers[wL].weights.length; sW++) {
 
@@ -277,9 +327,6 @@ class Net {
 
             }
         }
-
-
-
     }
 
     sig(n) {
