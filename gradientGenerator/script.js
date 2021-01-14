@@ -35,7 +35,7 @@ let mousey;
 let x = 750;
 let y = 750;
 
-const layer_sizes = [2, 2, 3, 3]
+const layer_sizes = [2, 6, 3]
 let input_values;
 let n;
 let group = []
